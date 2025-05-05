@@ -15,7 +15,6 @@ public class CalculadoraCientifica extends JFrame implements ActionListener {
     private JPanel painelCientifico;
     private boolean cientificoVisivel = false;
 
-    // Paleta de cores escuras com toque futurista
     private Color backgroundColor = new Color(30, 30, 30);
     private Color buttonColor = new Color(60, 60, 60);
     private Color operatorColor = new Color(80, 80, 180);
@@ -27,11 +26,10 @@ public class CalculadoraCientifica extends JFrame implements ActionListener {
     public CalculadoraCientifica() {
         setTitle("Calculadora Científica");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 600); // Definido para 600x600
+        setSize(600, 600);
         setLayout(new BorderLayout());
         getContentPane().setBackground(backgroundColor);
 
-        // Criar o display com fonte maior
         display = new JTextField();
         display.setHorizontalAlignment(JTextField.RIGHT);
         display.setEditable(false);
@@ -41,7 +39,6 @@ public class CalculadoraCientifica extends JFrame implements ActionListener {
         display.setBorder(new EmptyBorder(10, 10, 20, 10));
         add(display, BorderLayout.NORTH);
 
-        // Painel principal para botões básicos (CENTER)
         JPanel painelBasico = new JPanel(new GridLayout(5, 4, 5, 5));
         painelBasico.setBackground(backgroundColor);
         String[] botoesBasicos = {
@@ -56,12 +53,11 @@ public class CalculadoraCientifica extends JFrame implements ActionListener {
         }
         add(painelBasico, BorderLayout.CENTER);
 
-        // Botão para mostrar/esconder funções científicas (WEST)
-        JButton botaoMenuCientifico = new JButton("≡"); // Ícone de menu simples
+        JButton botaoMenuCientifico = new JButton("≡");
         botaoMenuCientifico.addActionListener(e -> {
             cientificoVisivel = !cientificoVisivel;
             painelCientifico.setVisible(cientificoVisivel);
-            pack(); // Podemos manter o pack aqui para ajustar ao mostrar/esconder
+            pack();
         });
         botaoMenuCientifico.setFont(buttonFont);
         botaoMenuCientifico.setForeground(foregroundColor);
@@ -73,7 +69,6 @@ public class CalculadoraCientifica extends JFrame implements ActionListener {
         painelMenu.add(botaoMenuCientifico);
         add(painelMenu, BorderLayout.WEST);
 
-        // Painel para botões científicos (inicialmente oculto)
         painelCientifico = new JPanel(new GridLayout(4, 3, 5, 5));
         painelCientifico.setBackground(backgroundColor);
         String[] botoesCientificos = {
@@ -85,14 +80,12 @@ public class CalculadoraCientifica extends JFrame implements ActionListener {
         for (String textoBotao : botoesCientificos) {
             painelCientifico.add(criarBotao(textoBotao));
         }
-        painelCientifico.setVisible(false); // Inicialmente oculto
-        add(painelCientifico, BorderLayout.EAST); // Adicionado à direita e inicialmente oculto
+        painelCientifico.setVisible(false);
+        add(painelCientifico, BorderLayout.EAST);
 
-        // pack(); // Remova ou comente esta linha
         setVisible(true);
     }
 
-    // Método para criar botões com estilo consistente
     private JButton criarBotao(String texto) {
         JButton botao = new JButton(texto);
         botao.addActionListener(this);
